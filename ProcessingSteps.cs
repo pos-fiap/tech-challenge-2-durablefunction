@@ -16,10 +16,10 @@ namespace DataProcessingOrchestrator
 
     public enum ProcessingStepEnum
     {
-       OrderRequest,
-       Payment,
-       Approval,
-       ProcessOrder,
-       SendOrder,
+        OrderRequest,
+        Payment,
+        Approval,
+        ProcessOrder,
+        SendOrder,
     }
 }

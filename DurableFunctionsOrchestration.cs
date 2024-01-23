@@ -1,4 +1,3 @@
-using DataProcessingOrchestrator;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.DurableTask;
 using Microsoft.Azure.WebJobs.Extensions.Http;
@@ -9,7 +8,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Company.Function
+namespace DataProcessingOrchestrator
 {
     public static class DurableFunctionsOrchestration
     {
@@ -68,7 +67,7 @@ namespace Company.Function
 
                     case ProcessingStepEnum.Approval:
 
-                        using (CancellationTokenSource timeoutCts = new CancellationTokenSource())
+                        using (CancellationTokenSource timeoutCts = new())
                         {
                             DateTime dueTime = context.CurrentUtcDateTime.AddMinutes(1);
                             Task durableTimeout = context.CreateTimer(dueTime, timeoutCts.Token);
@@ -80,6 +79,8 @@ namespace Company.Function
                                 Name = "DurableFunctionsOrchestration - Awaiting Approval:",
                                 Url = @$"curl -d 'true' http://{durableUrl}/runtime/webhooks/durabletask/instances/{context.InstanceId}/raiseEvent/ApprovalEvent -H 'Content-Type: application/json'"
                             };
+
+                            log.LogInformation($"Order {processingData.OrderNumber} awaiting for approval...");
 
                             context.SetCustomStatus(approvalStatus);
 

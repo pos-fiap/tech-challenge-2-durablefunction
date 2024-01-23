@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualBasic;
-using System;
+﻿using System;
 
 namespace DataProcessingOrchestrator
 {
@@ -27,7 +26,7 @@ namespace DataProcessingOrchestrator
 
         public ProcessingData()
         {
-                
+
         }
 
         public ProcessingData(InputOrderModel inputOrder)
