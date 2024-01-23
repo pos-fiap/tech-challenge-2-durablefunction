@@ -1,4 +1,4 @@
-# Durable Functions Orchestrator
+# Durable Function - Order Orchestrator
 
 Este é um exemplo de uma Azure Durable Function Orchestrator para processar pedidos com etapas como pedido, pagamento, aprovação, processamento e envio.
 
@@ -35,7 +35,7 @@ curl --location 'http://localhost:7281/api/DurableFunctionsOrchestration_HttpSta
 
 Durante o passo de Approval, a Durable Function aguarda por 1 minuto o envio de uma request via Webhook para o evento "ApprovalEvent", sendo possível pegar esse link utilizando o Webhook de "statusQueryGetUri" que está presente no retono da primeira requisição realizada para a DurableFunction.
 
-![statusQueryGetUri](URL da imagem)
+![statusQueryGetUri](/statusQueryGetUri.png)
 
 Exemplo do cURL recebido no momento em que a Durable Function espera pela resposta do evento:
 ```
